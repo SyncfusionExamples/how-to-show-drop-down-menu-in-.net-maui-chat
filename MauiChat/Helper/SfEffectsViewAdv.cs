@@ -21,8 +21,8 @@ namespace MauiChat
             this.LongPressEffects = SfEffects.None;
             this.TouchDownEffects = SfEffects.None;
             this.TouchUpEffects = SfEffects.None;
-#if ANDROID || IOS || MACCATALYST
-            this.LongPressed += SfEffectsViewAdv_LongPressed;
+#if !WINDOWS
+            this.LongPressed += SfEffectsView_LongPressed;
 #endif
         }
 
@@ -57,8 +57,8 @@ namespace MauiChat
                 this.Popup.IsOpen = true;
             }
         }
-#endif
-        private void SfEffectsViewAdv_LongPressed(object? sender, EventArgs e)
+#else
+        private void SfEffectsView_LongPressed(object? sender, EventArgs e)
         {
             if (sender is CustomEffectsView view && view.Popup is SfPopup popup)
             {
@@ -67,6 +67,8 @@ namespace MauiChat
                 popup.IsOpen = true;
             }
         }
+#endif
+
         #endregion
     }
 }

@@ -33,7 +33,7 @@
 
             <core:SfChipGroup x:Name="chipGroup" x:Key="chipGroup" ChipStroke="Transparent" ChipStrokeThickness="0" ChipCornerRadius="0" ItemsSource="{Binding PopupItems}">  
                 <core:SfChipGroup.ChipLayout>  
-                    <StackLayout/>  
+                    <VerticalStackLayout/>  
                 </core:SfChipGroup.ChipLayout>  
                 <core:SfChipGroup.ItemTemplate>  
                     <DataTemplate x:DataType="x:String">

@@ -27,7 +27,7 @@ namespace MauiChat
             this.chipGroup = bindable.Resources["chipGroup"] as SfChipGroup;
             if (this.chipGroup != null)
             {
-                this.chipGroup.ChipClicked += ChipGroup_ChipClicked1;
+                this.chipGroup.ChipClicked += ChipGroup_ChipClicked;
             }
 
             base.OnAttachedTo(bindable);
@@ -37,7 +37,7 @@ namespace MauiChat
         {
             if (this.chipGroup != null)
             {
-                this.chipGroup.ChipClicked -= ChipGroup_ChipClicked1;
+                this.chipGroup.ChipClicked -= ChipGroup_ChipClicked;
                 this.chipGroup = null;
             }
             this.popup = null;
@@ -48,9 +48,9 @@ namespace MauiChat
 
         #region Callbacks
 
-        private void ChipGroup_ChipClicked1(object? sender, EventArgs e)
+        private void ChipGroup_ChipClicked(object? sender, EventArgs e)
         {
-            if (this.popup != null)
+            if (this.popup != null && this.popup.IsOpen)
             {
                 this.popup.IsOpen = false;
             }
