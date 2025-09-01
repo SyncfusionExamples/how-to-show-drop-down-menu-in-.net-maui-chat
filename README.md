@@ -45,16 +45,64 @@
         </ResourceDictionary>  
     </ContentPage.Resources>  
 
-Behavior:
-
-    this.chipGroup.ChipClicked += ChipGroup_ChipClicked;
-
-    private void ChipGroup_ChipClicked(object? sender, EventArgs e)
+    public class CustomEffectsView : SfEffectsView
     {
-        if (this.popup != null && this.popup.IsOpen)
+        #region Constructor
+
+        public CustomEffectsView()
         {
-            this.popup.IsOpen = false;
+            this.LongPressEffects = SfEffects.None;
+            this.TouchDownEffects = SfEffects.None;
+            this.TouchUpEffects = SfEffects.None;
+#if !WINDOWS
+            this.LongPressed += SfEffectsView_LongPressed;
+#endif
         }
+
+        #endregion
+
+        #region Properties
+        public SfPopup? Popup { get; set; }
+        #endregion
+
+        #region Protected Methods
+        protected override void OnHandlerChanged()
+        {
+            base.OnHandlerChanged();
+#if WINDOWS
+            if (this.Handler != null && this.Handler.PlatformView is MauiPanel platformView)
+            {
+                platformView.RightTapped += PlatformView_RightTapped;
+            }
+#endif
+        }
+        #endregion
+
+        #region Callbacks
+
+#if WINDOWS
+        private void PlatformView_RightTapped(object sender, Microsoft.UI.Xaml.Input.RightTappedRoutedEventArgs e)
+        {
+            if (this.Popup != null)
+            {
+                this.Popup.RelativeView = this;
+                this.Popup.RelativePosition = Syncfusion.Maui.Popup.PopupRelativePosition.AlignTopRight;
+                this.Popup.IsOpen = true;
+            }
+        }
+#else
+        private void SfEffectsView_LongPressed(object? sender, EventArgs e)
+        {
+            if (sender is CustomEffectsView view && view.Popup is SfPopup popup)
+            {
+                popup.RelativeView = view;
+                popup.RelativePosition = Syncfusion.Maui.Popup.PopupRelativePosition.AlignTopRight;
+                popup.IsOpen = true;
+            }
+        }
+#endif
+
+        #endregion
     }
 
 ```
