@@ -1,5 +1,7 @@
 # how-to-show-drop-down-menu-in-.net-maui-chat
 
+This sample demonstrates how to show drop down menu in .NET MAUI Chat (SfChat).
+
 ## Sample
 
 ```xaml
