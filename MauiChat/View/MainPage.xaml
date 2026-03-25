@@ -19,13 +19,18 @@
     <ContentPage.Resources>  
         <ResourceDictionary>  
             
-            <Style TargetType="syncfusion:IncomingMessageTextView">  
+            <Style TargetType="syncfusion:IncomingMessageContentView">  
                 <Setter Property="ControlTemplate">  
                     <Setter.Value>  
                         <ControlTemplate x:DataType="syncfusion:TextMessage">
-                            <local:CustomEffectsView Popup="{x:Reference sfPopup}" x:Name="customView" >
-                                <Label  Text="{Binding Text}" HorizontalTextAlignment="Start" FontSize="14" BackgroundColor="Transparent" BindingContext="{TemplateBinding BindingContext}"/>  
-                            </local:CustomEffectsView>  
+                            <Border Stroke="Transparent" StrokeThickness="0" Padding="16, 8" Background="#F7F2FB">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="8"/>
+                                </Border.StrokeShape>
+                            <local:CustomEffectsView Popup="{x:Reference sfPopup}" x:Name="customView" VerticalOptions="Center">
+                                <Label Text="{Binding Text}" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" FontSize="14" BindingContext="{TemplateBinding BindingContext}"/>  
+                            </local:CustomEffectsView>
+                            </Border>
                         </ControlTemplate>  
                     </Setter.Value>  
                 </Setter>  
