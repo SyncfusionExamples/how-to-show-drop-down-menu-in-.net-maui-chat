@@ -23,7 +23,7 @@
                 <Setter Property="ControlTemplate">  
                     <Setter.Value>  
                         <ControlTemplate x:DataType="syncfusion:TextMessage">
-                            <Border Stroke="Transparent" StrokeThickness="0" Padding="{OnPlatform Android= '16, 8', iOS='16,8', Default='16, 8'}" Background="#F7F2FB">
+                            <Border Stroke="Transparent" StrokeThickness="0" Padding="16, 8" Background="#F7F2FB">
                                 <Border.StrokeShape>
                                     <RoundRectangle CornerRadius="8"/>
                                 </Border.StrokeShape>
